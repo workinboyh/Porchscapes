@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Porchscapes by Carol &amp; Susan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Custom container gardens, seasonal porch designs, wreaths and interior plantscapes in Fuquay-Varina, Garner, Raleigh, Cary and Apex, NC.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Allura&family=Gilda+Display&family=Jost:ital,wght@0,400;0,500;1,400&display=swap">
+<style>
+/* Layout: a sage-and-cream brand page. Photos sit inside gable (house-roof) frames
+   that echo the logo; everything else stays quiet so the plants carry the color. */
+:root {
+  --bg: #F5F3EA;          /* page */
+  --surface: #FFFFFF;     /* cards */
+  --ink: #26331F;         /* text */
+  --ink-soft: #55624D;    /* secondary text */
+  --sage: #6B8C5A;        /* brand green (from the flyer) */
+  --sage-deep: #3E5734;   /* contact band, buttons */
+  --rose: #C3978A;        /* logo house + accents */
+  --marigold: #E0A13A;    /* flower dot */
+  --coral: #D7694C;
+  --sky: #6E9FB0;
+  --on-sage: #F7F4EA;     /* text on green */
+  --line: #DCD9CB;
+  --font-script: "Allura", "Brush Script MT", cursive;
+  --font-display: "Gilda Display", "Iowan Old Style", Georgia, serif;
+  --font-body: "Jost", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --gable: polygon(50% 0, 100% 22%, 100% 100%, 0 100%, 0 22%);
+  --max: 1160px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1A2318; --surface: #232E20; --ink: #ECE9DD; --ink-soft: #B5BBA8;
+    --sage: #8DAD79; --sage-deep: #2F4528; --rose: #D9AEA1; --on-sage: #F2EFE3;
+    --line: #36432F; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1A2318; --surface: #232E20; --ink: #ECE9DD; --ink-soft: #B5BBA8;
+  --sage: #8DAD79; --sage-deep: #2F4528; --rose: #D9AEA1; --on-sage: #F2EFE3;
+  --line: #36432F; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 400 17px/1.65 var(--font-body);
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--marigold); outline-offset: 3px; border-radius: 4px; }
+
+.wrap {
+  max-width: var(--max); margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 700px) { .wrap { padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); } }
+section { padding-block: clamp(56px, 8vw, 104px); }
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.3rem, 5.2vw, 3.9rem); }
+h2 { font-size: clamp(1.9rem, 3.6vw, 2.8rem); }
+h3 { font-size: 1.35rem; }
+p { margin: 0; }
+.eyebrow { font-size: .78rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--sage); }
+.lede { color: var(--ink-soft); max-width: 58ch; }
+.section-head { display: grid; gap: 14px; margin-bottom: 40px; max-width: 640px; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; justify-content: center;
+  padding: 13px 22px; border-radius: 999px; font: 500 .98rem var(--font-body);
+  text-decoration: none; border: 1.5px solid var(--sage-deep); cursor: pointer;
+  transition: background .2s, color .2s, transform .2s;
+}
+.btn-primary { background: var(--sage-deep); color: var(--on-sage); }
+.btn-primary:hover { background: var(--sage); border-color: var(--sage); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn-ghost:hover { border-color: var(--sage); color: var(--sage); }
+
+/* ---------- Logo ---------- */
+.logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
+.logo svg { width: 52px; height: auto; flex: none; }
+.logo .word { display: grid; line-height: 1; }
+.logo .script { font-family: var(--font-script); font-size: 2.3rem; color: var(--sage); line-height: .9; }
+.logo .by { font-size: .64rem; letter-spacing: .3em; text-transform: lowercase; color: var(--ink-soft); padding-left: 3px; }
+
+/* ---------- Header ---------- */
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px 28px; flex-wrap: wrap; padding-block: 20px; }
+.site-nav { display: flex; gap: 6px 24px; flex-wrap: wrap; font-size: .95rem; }
+.site-nav a { text-decoration: none; color: var(--ink-soft); padding: 4px 0; border-bottom: 1.5px solid transparent; }
+.site-nav a:hover { color: var(--ink); border-color: var(--rose); }
+
+/* ---------- Hero ---------- */
+.hero { padding-block: clamp(24px, 4vw, 56px) clamp(48px, 7vw, 88px); }
+.hero .wrap { display: grid; gap: 48px; align-items: center; }
+@media (min-width: 900px) { .hero .wrap { grid-template-columns: 1.05fr 1fr; } }
+.hero-copy { display: grid; gap: 22px; min-width: 0; }
+.hero-copy h1 em { font-style: normal; font-family: var(--font-script); color: var(--sage); font-size: 1.35em; line-height: .8; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
+.hero-art { position: relative; max-width: 520px; width: 100%; justify-self: center; }
+.gable { clip-path: var(--gable); }
+.hero-art .main { aspect-ratio: 4 / 5; width: 86%; margin-left: auto; object-fit: cover; }
+.hero-art .inset {
+  position: absolute; left: 0; bottom: -28px; width: 42%; aspect-ratio: 1;
+  object-fit: cover; border-radius: 50%; border: 8px solid var(--bg);
+}
+.hero-art .roofline { position: absolute; top: -14px; right: -2%; width: 90%; height: auto; pointer-events: none; }
+
+/* ---------- Service area band ---------- */
+.area { background: var(--sage); color: var(--on-sage); padding-block: 18px; }
+.area .wrap { display: flex; flex-wrap: wrap; gap: 6px 22px; align-items: center; justify-content: center; text-align: center; }
+.area .label { font-family: var(--font-script); font-size: 1.9rem; line-height: 1; }
+.area ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 18px; justify-content: center; font-weight: 500; letter-spacing: .04em; }
+.area li + li::before { content: "•"; margin-right: 18px; opacity: .55; }
+
+/* ---------- Services ---------- */
+.services-grid { display: grid; gap: 28px; grid-template-columns: 1fr; }
+@media (min-width: 600px) { .services-grid { grid-template-columns: repeat(2, 1fr); } .service:last-child { grid-column: span 2; } .service:last-child img { aspect-ratio: 16 / 7; } }
+@media (min-width: 900px) { .services-grid { grid-template-columns: repeat(6, 1fr); } .service { grid-column: span 2; } .service:nth-child(n+4) { grid-column: span 3; } .service:nth-child(n+4) img { aspect-ratio: 2 / 1; } }
+.service { display: grid; gap: 12px; align-content: start; min-width: 0; }
+.service img { aspect-ratio: 4 / 3; object-fit: cover; border-radius: 6px; width: 100%; }
+.service p { color: var(--ink-soft); }
+
+/* ---------- Before / after ---------- */
+.transform, .tinted { background: var(--surface); }
+.transform .wrap { display: grid; gap: 40px; align-items: center; }
+@media (min-width: 900px) { .transform .wrap { grid-template-columns: 1fr 1.2fr; } }
+.ba { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.ba figure { margin: 0; display: grid; gap: 8px; }
+.ba img { aspect-ratio: 3 / 4; object-fit: cover; border-radius: 6px; width: 100%; }
+.ba figcaption { font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 500; color: var(--ink-soft); }
+.ba figure:last-child figcaption { color: var(--sage); }
+
+/* ---------- Steps ---------- */
+.steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 28px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); counter-reset: step; }
+.steps li { display: grid; gap: 8px; padding-top: 18px; border-top: 1.5px solid var(--line); counter-increment: step; min-width: 0; }
+.steps li::before { content: counter(step); font-family: var(--font-display); font-size: 1.9rem; color: var(--rose); line-height: 1; }
+.steps p { color: var(--ink-soft); }
+
+/* ---------- Gallery ---------- */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.chip {
+  font: 500 .9rem var(--font-body); padding: 8px 16px; border-radius: 999px; cursor: pointer;
+  background: transparent; color: var(--ink-soft); border: 1.5px solid var(--line);
+}
+.chip:hover { border-color: var(--sage); color: var(--ink); }
+.chip[aria-pressed="true"] { background: var(--sage-deep); border-color: var(--sage-deep); color: var(--on-sage); }
+.gallery { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(min(46%, 220px), 1fr)); }
+.gallery button { all: unset; cursor: zoom-in; display: block; border-radius: 6px; overflow: hidden; }
+.gallery button:focus-visible { outline: 3px solid var(--marigold); outline-offset: 2px; }
+.gallery img { aspect-ratio: 1; object-fit: cover; width: 100%; transition: transform .35s; }
+.gallery button:hover img { transform: scale(1.04); }
+.more { margin-top: 24px; display: flex; justify-content: center; }
+
+dialog.lightbox { border: 0; padding: 0; background: transparent; max-width: min(92vw, 900px); max-height: 92vh; }
+dialog.lightbox::backdrop { background: rgba(20, 28, 18, .86); }
+dialog.lightbox img { max-height: 84vh; width: auto; margin: 0 auto; border-radius: 6px; }
+dialog.lightbox p { color: #F2EFE3; text-align: center; margin-top: 10px; font-size: .95rem; }
+.lb-close { position: fixed; top: calc(14px + env(safe-area-inset-top, 0px)); right: calc(14px + env(safe-area-inset-right, 0px)); width: 44px; height: 44px; border-radius: 50%; border: 0; background: #F2EFE3; color: #26331F; font-size: 1.5rem; cursor: pointer; }
+
+/* ---------- About ---------- */
+.about .wrap { display: grid; gap: 44px; align-items: center; }
+@media (min-width: 900px) { .about .wrap { grid-template-columns: 1fr 1fr; } }
+.about-photo { aspect-ratio: 5 / 4; object-fit: cover; object-position: 50% 30%; width: 100%; }
+.about-copy { display: grid; gap: 18px; min-width: 0; }
+.about-copy p { color: var(--ink-soft); max-width: 58ch; }
+.signature { font-family: var(--font-script); font-size: 2.4rem; color: var(--sage); line-height: 1; }
+
+/* ---------- Contact ---------- */
+.contact { background: var(--sage-deep); color: var(--on-sage); }
+.contact .wrap { display: grid; gap: 28px; justify-items: center; text-align: center; }
+.contact h2 { color: var(--on-sage); }
+.contact .lede { color: var(--on-sage); opacity: .85; }
+.email {
+  font-family: var(--font-display); font-size: clamp(1.3rem, 4.6vw, 2.2rem);
+  user-select: all; overflow-wrap: anywhere; padding: 10px 0; border-bottom: 1.5px solid var(--rose);
+}
+.contact .btn-primary { background: var(--on-sage); color: var(--sage-deep); border-color: var(--on-sage); }
+.contact .btn-primary:hover { background: transparent; color: var(--on-sage); }
+.contact .btn-ghost { color: var(--on-sage); border-color: rgba(247,244,234,.35); }
+.contact .btn-ghost:hover { border-color: var(--on-sage); color: var(--on-sage); }
+.contact-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.copy-status { min-height: 1.5em; font-size: .92rem; opacity: .85; }
+.social { display: flex; gap: 22px; flex-wrap: wrap; justify-content: center; font-size: .95rem; }
+.social a { text-decoration: none; border-bottom: 1px solid rgba(247,244,234,.4); }
+.social a:hover { border-color: var(--on-sage); }
+
+/* ---------- Footer ---------- */
+footer { padding-block: 40px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 18px 32px; align-items: center; justify-content: space-between; font-size: .9rem; color: var(--ink-soft); }
+</style>
+
+<!-- Logo mark, reused in the header and hero -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 120 112">
+    <g fill="none" style="stroke:var(--rose)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 50 L60 9 L112 50"/>
+      <path d="M89 31 V17"/>
+      <path d="M22 44 V104 H98 V44"/>
+    </g>
+    <g fill="none" style="stroke:var(--sage)" stroke-width="2.6" stroke-linecap="round">
+      <path d="M60 84 V58"/>
+      <path d="M59 84 C55 76 50 72 45 66"/>
+      <path d="M61 84 C65 76 70 71 75 64"/>
+      <path d="M50 88 C44 92 40 96 37 101"/>
+    </g>
+    <g style="fill:var(--sage)">
+      <ellipse cx="54" cy="72" rx="5" ry="2.4" transform="rotate(-35 54 72)"/>
+      <ellipse cx="67" cy="73" rx="5" ry="2.4" transform="rotate(35 67 73)"/>
+      <ellipse cx="41" cy="97" rx="4" ry="2" transform="rotate(-50 41 97)"/>
+    </g>
+    <circle cx="60" cy="54" r="6.5" style="fill:var(--marigold)"/>
+    <circle cx="60" cy="54" r="2.3" style="fill:var(--ink)"/>
+    <circle cx="44" cy="63" r="5" style="fill:var(--coral)"/>
+    <circle cx="76" cy="61" r="5" style="fill:var(--sky)"/>
+    <path d="M44 84 H76 L72 100 H48 Z" style="fill:var(--rose)"/>
+  </symbol>
+</svg>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Porchscapes by Carol and Susan, home">
+      <svg viewBox="0 0 120 112" aria-hidden="true"><use href="#mark"/></svg>
+      <span class="word"><span class="script">porchscapes</span><span class="by">by carol &amp; susan</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="eyebrow">Container gardens · Wreaths · Seasonal porches</p>
+        <h1>Make your porch <em>a paradise</em> every season</h1>
+        <p class="lede">We design, plant and install custom container gardens, wreaths and seasonal décor for homes in and around Raleigh. With more than 50 years of combined experience, we take care of everything, from choosing the plants to setting them on your porch.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Set up an appointment</a>
+          <a class="btn btn-ghost" href="#gallery">See our work</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <img class="main gable" src="images/fall-window-box.jpg" alt="Overflowing fall window box with dwarf cypress, mums, pansies, coleus and small pumpkins" width="880" height="1100">
+        <img class="inset" src="images/winter-cabbage-bowl.jpg" alt="Ornamental cabbage, pansies and silver foliage in a white bowl on brick steps" width="400" height="400">
+      </div>
+    </div>
+  </section>
+
+  <div class="area">
+    <div class="wrap">
+      <span class="label">Proudly serving</span>
+      <ul>
+        <li>Fuquay-Varina</li><li>Garner</li><li>Raleigh</li><li>Cary</li><li>Apex</li>
+      </ul>
+      <span>&amp; surrounding areas</span>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">What we do</p>
+        <h2>Fresh color at your front door, all year</h2>
+      </div>
+      <div class="services-grid">
+        <article class="service">
+          <img src="images/summer-red-hibiscus.jpg" alt="Large urn with red hibiscus, vinca and trailing variegated vines beside an American flag" loading="lazy">
+          <h3>Custom container gardens</h3>
+          <p>Every planter is designed around your space, your light and your style, then planted and set in place on your porch or patio.</p>
+        </article>
+        <article class="service">
+          <img src="images/fall-woven-pumpkins.jpg" alt="Woven planter with white and orange pumpkins, evergreens and trailing ivy at a front door" loading="lazy">
+          <h3>Seasonal porch refreshes</h3>
+          <p>We change your planters with the seasons, from summer annuals to fall mums, pansies and pumpkins, then evergreens and berries for winter.</p>
+        </article>
+        <article class="service">
+          <img src="images/wreath-holly-sash.jpg" alt="Frosted holly wreath with a white monogrammed sash on a wooden front door" loading="lazy">
+          <h3>Wreaths, sashes &amp; bows</h3>
+          <p>Wreaths made for your door and the season, finished with a hand-tied bow or a monogrammed sash.</p>
+        </article>
+        <article class="service">
+          <img src="images/indoor-orchid.jpg" alt="Pink orchid and golden pothos in a cobalt blue pot indoors" loading="lazy">
+          <h3>Interior plantscapes</h3>
+          <p>Orchids, snake plants and other easy-care greenery that bring a little of the garden inside.</p>
+        </article>
+        <article class="service">
+          <img src="images/beds-walkway.jpg" alt="Walkway border planted with angelonia, coleus, impatiens and yellow lantana" loading="lazy">
+          <h3>Beds &amp; borders</h3>
+          <p>Seasonal color for walkways, flower beds and borders all around your home.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="transform" aria-labelledby="ba-title">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:0">
+        <p class="eyebrow">Before &amp; after</p>
+        <h2 id="ba-title">From faded to finished</h2>
+        <p class="lede">A tired, dried-out planter doesn't have to be thrown away. We give old containers a second life, filling them with fresh plants and turning them into living works of art for your porch.</p>
+      </div>
+      <div class="ba">
+        <figure>
+          <img src="images/before-trough.jpg" alt="Before: white metal trough filled with dried ornamental grass on a deck" loading="lazy">
+          <figcaption>Before</figcaption>
+        </figure>
+        <figure>
+          <img src="images/after-trough.jpg" alt="After: the same trough planted with a dwarf cypress, coleus, pansies and a red cardinal ornament" loading="lazy">
+          <figcaption>After</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="how-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">How it works</p>
+        <h2 id="how-title">Simple from start to finish</h2>
+      </div>
+      <ol class="steps">
+        <li><h3>Reach out by email</h3><p>Send us a note about what you have in mind. We'll get back to you and work out the details together.</p></li>
+        <li><h3>We design it</h3><p>We choose plants, colors and containers that suit your space and your home.</p></li>
+        <li><h3>We plant &amp; install</h3><p>We gather everything, plant it and set it up for you.</p></li>
+        <li><h3>Refresh each season</h3><p>When the season changes, we'll swap in fresh plants so your porch always looks its best.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="gallery" class="tinted">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Our work</p>
+        <h2>Porches, patios &amp; planters</h2>
+      </div>
+      <div class="filters" role="group" aria-label="Filter photos">
+        <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="chip" type="button" data-filter="fall" aria-pressed="false">Fall &amp; winter</button>
+        <button class="chip" type="button" data-filter="summer" aria-pressed="false">Spring &amp; summer</button>
+        <button class="chip" type="button" data-filter="beds" aria-pressed="false">Beds &amp; borders</button>
+        <button class="chip" type="button" data-filter="extras" aria-pressed="false">Wreaths &amp; indoor</button>
+      </div>
+      <div class="gallery" id="gallery-grid"></div>
+      <div class="more"><button class="btn btn-ghost" type="button" id="show-more">Show all photos</button></div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="wrap">
+      <img class="about-photo gable" src="images/carol-and-susan.jpg" alt="Carol and Susan smiling together at the Green and Growin' horticulture trade show" >
+      <div class="about-copy">
+        <p class="eyebrow">Meet the owners</p>
+        <h2>Two plant lovers, 50+ years of experience</h2>
+        <p>Porchscapes by Carol &amp; Susan is a business built by two plant lovers who turned a knack for beautiful containers into something they could share. Together, they bring more than 50 years of experience in growing, designing and arranging.</p>
+        <p>They keep up with new plants and ideas at industry events like Green &amp; Growin', and every arrangement they create is designed with its home in mind.</p>
+        <p class="signature">Carol &amp; Susan</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <p class="eyebrow" style="color:var(--on-sage);opacity:.8">Get in touch</p>
+      <h2>Let's plan your porch</h2>
+      <p class="lede">Contact us by email to set up an appointment. We'll get back to you to talk through your ideas and plan the details.</p>
+      <p class="email" id="email">info.porchscapes@gmail.com</p>
+      <div class="contact-actions">
+        <button class="btn btn-primary" type="button" id="copy-email">Copy email address</button>
+        <a class="btn btn-ghost" href="mailto:info.porchscapes@gmail.com?subject=Porch%20design%20request">Open in my email app</a>
+      </div>
+      <p class="copy-status" id="copy-status" aria-live="polite"></p>
+      <div class="social">
+        <a href="https://www.facebook.com/porchscapesbycarolandsusan/" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.instagram.com/porchscapesbycarolandsusan/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Back to top">
+      <svg viewBox="0 0 120 112" aria-hidden="true" style="width:38px"><use href="#mark"/></svg>
+      <span class="word"><span class="script" style="font-size:1.8rem">porchscapes</span><span class="by">by carol &amp; susan llc</span></span>
+    </a>
+    <p>Serving Fuquay-Varina, Garner, Raleigh, Cary, Apex &amp; surrounding areas</p>
+    <p>© 2026 Porchscapes by Carol &amp; Susan LLC</p>
+  </div>
+</footer>
+
+<dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+  <button class="lb-close" type="button" id="lb-close" aria-label="Close photo">×</button>
+  <img id="lb-img" src="" alt="">
+  <p id="lb-cap"></p>
+</dialog>
+
+<script>
+/* Gallery photos. To add one: put the file in /images and add a line here.
+   Categories: fall, summer, beds, extras */
+const PHOTOS = [
+  ["fall-window-box", "fall", "Fall window box with cypress, mums and mini pumpkins"],
+  ["summer-red-hibiscus", "summer", "Red hibiscus urn with vinca and trailing vines"],
+  ["fall-woven-pumpkins", "fall", "Woven planter with pumpkins and evergreens"],
+  ["beds-walkway", "beds", "Walkway border of angelonia, coleus and lantana"],
+  ["wreath-holly-sash", "extras", "Frosted holly wreath with monogrammed sash"],
+  ["summer-patio-pair", "summer", "Matching patio pots overlooking a golf course"],
+  ["winter-cypress-pansies", "fall", "Dwarf cypress with purple pansies by an iron railing"],
+  ["summer-pink-hibiscus", "summer", "Pink hibiscus with coleus and heliotrope"],
+  ["beds-angelonia", "beds", "Pink angelonia and impatiens in a mixed bed"],
+  ["fall-cypress-pansies", "fall", "Lemon cypress and pansies against fall color"],
+  ["summer-fern-planter", "summer", "Fern and variegated plectranthus in a stone planter"],
+  ["indoor-orchid", "extras", "Orchid with golden pothos indoors"],
+  ["fall-golden-cypress", "fall", "Golden cypress with heuchera and creeping jenny"],
+  ["summer-entry-planter", "summer", "Entry planter with a pink mandevilla"],
+  ["beds-impatiens", "beds", "A full bed of pink impatiens"],
+  ["winter-pansy-urn", "fall", "Cool-season urn with yellow pansies"],
+  ["summer-bench-patio", "summer", "Patio planter beside a teak bench"],
+  ["fall-pumpkin-display", "extras", "Heirloom pumpkin display"],
+  ["fall-cypress-pumpkin", "fall", "Golden cypress and a heirloom pumpkin"],
+  ["summer-stone-patio", "summer", "Containers on a flagstone patio"],
+  ["beds-pink-mix", "beds", "Pink hibiscus, vinca and coleus"],
+  ["fall-steps-pansies", "fall", "Cypress, pansies and a mini pumpkin by the steps"],
+  ["summer-urn-lantana", "summer", "Urn with lantana and mandevilla"],
+  ["indoor-snake-plants", "extras", "Snake plants in a wire basket"],
+  ["winter-cabbage-bowl", "fall", "Ornamental cabbage bowl on brick steps"],
+  ["summer-caladium-urn", "summer", "Caladium and spider plant urn"],
+  ["beds-zinnias", "beds", "Orange zinnias in a planted bed"],
+  ["fall-mums-steps", "fall", "Mums and pumpkins on brick steps"],
+  ["summer-vinca-urn", "summer", "Vinca and dichondra urn"],
+  ["beds-hibiscus", "beds", "Hibiscus in a new bed"],
+  ["fall-boo-planter", "fall", "Halloween porch with cabbage and pansies"],
+  ["summer-elephant-ear", "summer", "Elephant ear in a tall white planter"],
+  ["beds-boxwood-impatiens", "beds", "Impatiens behind clipped boxwoods"],
+  ["winter-cabbage-bed", "fall", "Cabbage, kale and pansies in a bed"],
+  ["summer-geraniums", "summer", "Red geraniums"],
+  ["beds-hibiscus-wall", "beds", "Hibiscus and coleus along a brick wall"],
+  ["summer-terracotta", "summer", "Terracotta planter with mandevilla"],
+  ["decor-tabletop", "extras", "Seasonal tabletop arrangement"],
+  ["summer-yew-planter", "summer", "Columnar yew planter at a front door"],
+  ["beds-hibiscus-closeup", "beds", "Peach hibiscus and euphorbia"],
+  ["summer-tall-planter", "summer", "Tall modern planter with trailing vine"],
+  ["beds-yellow-hibiscus", "beds", "Yellow hibiscus"],
+  ["summer-petunias", "summer", "Red petunias and yellow calibrachoa"],
+];
+const START = 12;
+const grid = document.getElementById("gallery-grid");
+const moreBtn = document.getElementById("show-more");
+let filter = "all", expanded = false;
+
+function render() {
+  const list = PHOTOS.filter(p => filter === "all" || p[1] === filter);
+  const shown = expanded ? list : list.slice(0, START);
+  grid.innerHTML = "";
+  shown.forEach(([file, , alt]) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.setAttribute("aria-label", "View larger: " + alt);
+    const img = document.createElement("img");
+    img.src = "images/" + file + ".jpg"; img.alt = alt; img.loading = "lazy";
+    b.appendChild(img);
+    b.addEventListener("click", () => openBox(file, alt));
+    grid.appendChild(b);
+  });
+  moreBtn.hidden = expanded || list.length <= START;
+  moreBtn.textContent = "Show all " + list.length + " photos";
+}
+document.querySelectorAll(".chip").forEach(chip => {
+  chip.addEventListener("click", () => {
+    filter = chip.dataset.filter; expanded = false;
+    document.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", c === chip));
+    render();
+  });
+});
+moreBtn.addEventListener("click", () => { expanded = true; render(); });
+render();
+
+const box = document.getElementById("lightbox");
+function openBox(file, alt) {
+  document.getElementById("lb-img").src = "images/" + file + ".jpg";
+  document.getElementById("lb-img").alt = alt;
+  document.getElementById("lb-cap").textContent = alt;
+  if (box.showModal) box.showModal();
+}
+document.getElementById("lb-close").addEventListener("click", () => box.close());
+box.addEventListener("click", e => { if (e.target === box) box.close(); });
+
+document.getElementById("copy-email").addEventListener("click", () => {
+  const status = document.getElementById("copy-status");
+  const text = document.getElementById("email").textContent.trim();
+  const fallback = () => {
+    const r = document.createRange(); r.selectNodeContents(document.getElementById("email"));
+    const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+    status.textContent = "Email address selected. Press Ctrl+C (or ⌘C) to copy.";
+  };
+  try {
+    navigator.clipboard.writeText(text).then(() => { status.textContent = "Copied info.porchscapes@gmail.com"; }, fallback);
+  } catch (e) { fallback(); }
+});
+</script>
+
+</html>
