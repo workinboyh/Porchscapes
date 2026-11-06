@@ -12,35 +12,24 @@
 /* Layout: a sage-and-cream brand page. Photos sit inside gable (house-roof) frames
    that echo the logo; everything else stays quiet so the plants carry the color. */
 :root {
-  --bg: #F5F3EA;          /* page */
-  --surface: #FFFFFF;     /* cards */
-  --ink: #26331F;         /* text */
-  --ink-soft: #55624D;    /* secondary text */
-  --sage: #6B8C5A;        /* brand green (from the flyer) */
-  --sage-deep: #3E5734;   /* contact band, buttons */
-  --rose: #C3978A;        /* logo house + accents */
+  color-scheme: dark;     /* one look for every visitor: deep garden green */
+  --bg: #1A2318;          /* page */
+  --surface: #232E20;     /* alternate sections */
+  --ink: #ECE9DD;         /* text */
+  --ink-soft: #B5BBA8;    /* secondary text */
+  --sage: #8DAD79;        /* brand green, lifted for the dark background */
+  --sage-deep: #2F4528;   /* contact band, buttons */
+  --rose: #D9AEA1;        /* logo house + accents */
   --marigold: #E0A13A;    /* flower dot */
   --coral: #D7694C;
   --sky: #6E9FB0;
-  --on-sage: #F7F4EA;     /* text on green */
-  --line: #DCD9CB;
+  --on-sage: #F2EFE3;     /* text on green */
+  --line: #36432F;
   --font-script: "Allura", "Brush Script MT", cursive;
   --font-display: "Gilda Display", "Iowan Old Style", Georgia, serif;
   --font-body: "Jost", "Avenir Next", "Segoe UI", system-ui, sans-serif;
   --gable: polygon(50% 0, 100% 22%, 100% 100%, 0 100%, 0 22%);
   --max: 1160px;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #1A2318; --surface: #232E20; --ink: #ECE9DD; --ink-soft: #B5BBA8;
-    --sage: #8DAD79; --sage-deep: #2F4528; --rose: #D9AEA1; --on-sage: #F2EFE3;
-    --line: #36432F; color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #1A2318; --surface: #232E20; --ink: #ECE9DD; --ink-soft: #B5BBA8;
-  --sage: #8DAD79; --sage-deep: #2F4528; --rose: #D9AEA1; --on-sage: #F2EFE3;
-  --line: #36432F; color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -138,7 +127,7 @@ p { margin: 0; }
 
 /* ---------- Steps ---------- */
 .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 28px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); counter-reset: step; }
-.steps li { display: grid; gap: 8px; padding-top: 18px; border-top: 1.5px solid var(--line); counter-increment: step; min-width: 0; }
+.steps li { display: grid; gap: 8px; align-content: start; padding-top: 18px; border-top: 1.5px solid var(--line); counter-increment: step; min-width: 0; }
 .steps li::before { content: counter(step); font-family: var(--font-display); font-size: 1.9rem; color: var(--rose); line-height: 1; }
 .steps p { color: var(--ink-soft); }
 
@@ -286,7 +275,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 18px 32px; align-items: cent
         <article class="service">
           <img src="images/wreath-holly-sash.jpg" alt="Frosted holly wreath with a white monogrammed sash on a wooden front door" loading="lazy">
           <h3>Wreaths, sashes &amp; bows</h3>
-          <p>Wreaths made for your door and the season, finished with a hand-tied bow or a monogrammed sash.</p>
+          <p>Wreaths made for your door and the season, finished with a hand-tied bow.</p>
         </article>
         <article class="service">
           <img src="images/indoor-orchid.jpg" alt="Pink orchid and golden pothos in a cobalt blue pot indoors" loading="lazy">
