@@ -5,6 +5,20 @@
 <title>Porchscapes by Carol &amp; Susan</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Custom container gardens, seasonal porch designs, wreaths and interior plantscapes in Fuquay-Varina, Garner, Raleigh, Cary and Apex, NC.">
+<meta name="theme-color" content="#1A2318">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!-- Link previews (Facebook, texts, etc.). Update the two URLs if the site moves to its own domain. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Porchscapes by Carol &amp; Susan">
+<meta property="og:title" content="Porchscapes by Carol &amp; Susan">
+<meta property="og:description" content="Custom container gardens, seasonal porches and wreaths for homes in Fuquay-Varina, Garner, Raleigh, Cary and Apex, NC.">
+<meta property="og:url" content="https://workinboyh.github.io/Porchscapes/">
+<meta property="og:image" content="https://workinboyh.github.io/Porchscapes/images/share-preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A fall window box, a red hibiscus urn and a holly wreath designed by Porchscapes">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Allura&family=Gilda+Display&family=Jost:ital,wght@0,400;0,500;1,400&display=swap">
@@ -30,10 +44,12 @@
   --font-body: "Jost", "Avenir Next", "Segoe UI", system-ui, sans-serif;
   --gable: polygon(50% 0, 100% 22%, 100% 100%, 0 100%, 0 22%);
   --max: 1160px;
+  --header-h: 76px;
 }
+@media (max-width: 759px) { :root { --header-h: 64px; } }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 8px); }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
 body {
   margin: 0; background: var(--bg); color: var(--ink);
@@ -78,11 +94,58 @@ p { margin: 0; }
 .logo .script { font-family: var(--font-script); font-size: 2.3rem; color: var(--sage); line-height: .9; }
 .logo .by { font-size: .64rem; letter-spacing: .3em; text-transform: lowercase; color: var(--ink-soft); padding-left: 3px; }
 
-/* ---------- Header ---------- */
-.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px 28px; flex-wrap: wrap; padding-block: 20px; }
-.site-nav { display: flex; gap: 6px 24px; flex-wrap: wrap; font-size: .95rem; }
+/* ---------- Header (sticky) ---------- */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--bg); }
+.site-header {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
+  background: color-mix(in srgb, var(--bg) 94%, transparent);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent; transition: border-color .25s;
+}
+.site-header.scrolled { border-color: var(--line); }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: var(--header-h); padding-block: 8px; }
+.header-right { display: flex; align-items: center; gap: 28px; }
+.site-nav { display: flex; gap: 24px; font-size: .95rem; }
 .site-nav a { text-decoration: none; color: var(--ink-soft); padding: 4px 0; border-bottom: 1.5px solid transparent; }
 .site-nav a:hover { color: var(--ink); border-color: var(--rose); }
+.btn-sm { padding: 9px 18px; font-size: .92rem; white-space: nowrap; }
+.menu-toggle {
+  display: none; width: 44px; height: 44px; border-radius: 50%; cursor: pointer;
+  background: transparent; border: 1.5px solid var(--line); color: var(--ink);
+  align-items: center; justify-content: center;
+}
+.menu-toggle svg { width: 20px; height: 20px; }
+.menu-toggle .x { display: none; }
+.site-header.open .menu-toggle .bars { display: none; }
+.site-header.open .menu-toggle .x { display: block; }
+@media (max-width: 759px) {
+  .logo svg { width: 38px; }
+  .logo .script { font-size: 1.85rem; }
+  .logo .by { font-size: .56rem; }
+  .header-right { gap: 10px; }
+  .menu-toggle { display: inline-flex; }
+  .site-nav {
+    display: none; position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; gap: 0; background: var(--bg); border-bottom: 1px solid var(--line);
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 4px 12px; box-shadow: 0 18px 30px rgba(0,0,0,.35);
+  }
+  .site-header.open .site-nav { display: flex; }
+  .site-nav a { padding: 14px 0; font-size: 1.05rem; color: var(--ink); border-bottom: 1px solid var(--line); }
+  .site-nav a:last-child { border-bottom: 0; }
+}
+@media (max-width: 429px) {
+  .site-header .logo svg { display: none; }
+  .site-header .btn-sm { padding: 8px 14px; }
+}
+
+/* ---------- Seasonal banner ---------- */
+.season-banner { background: var(--surface); border-bottom: 1px solid var(--line); font-size: .93rem; }
+.season-banner .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px 14px; padding-block: 10px; text-align: center; }
+.season-banner p { color: var(--ink); }
+.season-banner p::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--marigold); margin-right: 10px; vertical-align: 2px; }
+.season-banner a { color: var(--rose); font-weight: 500; text-decoration: none; white-space: nowrap; }
+.season-banner a:hover { text-decoration: underline; }
 
 /* ---------- Hero ---------- */
 .hero { padding-block: clamp(24px, 4vw, 56px) clamp(48px, 7vw, 88px); }
@@ -101,7 +164,7 @@ p { margin: 0; }
 .hero-art .roofline { position: absolute; top: -14px; right: -2%; width: 90%; height: auto; pointer-events: none; }
 
 /* ---------- Service area band ---------- */
-.area { background: var(--sage); color: var(--on-sage); padding-block: 18px; }
+.area { background: var(--sage); color: var(--bg); padding-block: 18px; }
 .area .wrap { display: flex; flex-wrap: wrap; gap: 6px 22px; align-items: center; justify-content: center; text-align: center; }
 .area .label { font-family: var(--font-script); font-size: 1.9rem; line-height: 1; }
 .area ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 18px; justify-content: center; font-weight: 500; letter-spacing: .04em; }
@@ -113,7 +176,16 @@ p { margin: 0; }
 @media (min-width: 900px) { .services-grid { grid-template-columns: repeat(6, 1fr); } .service { grid-column: span 2; } .service:nth-child(n+4) { grid-column: span 3; } .service:nth-child(n+4) img { aspect-ratio: 2 / 1; } }
 .service { display: grid; gap: 12px; align-content: start; min-width: 0; }
 .service img { aspect-ratio: 4 / 3; object-fit: cover; border-radius: 6px; width: 100%; }
+.service-text { display: grid; gap: 8px; min-width: 0; }
 .service p { color: var(--ink-soft); }
+/* Phones: photo beside the text so the list stays short */
+@media (max-width: 599px) {
+  .services-grid { gap: 22px; }
+  .service { grid-template-columns: 108px 1fr; gap: 16px; align-items: start; }
+  .service img { aspect-ratio: 1; }
+  .service h3 { font-size: 1.18rem; }
+  .service p { font-size: .95rem; line-height: 1.55; }
+}
 
 /* ---------- Before / after ---------- */
 .transform, .tinted { background: var(--surface); }
@@ -146,11 +218,19 @@ p { margin: 0; }
 .gallery button:hover img { transform: scale(1.04); }
 .more { margin-top: 24px; display: flex; justify-content: center; }
 
-dialog.lightbox { border: 0; padding: 0; background: transparent; max-width: min(92vw, 900px); max-height: 92vh; }
-dialog.lightbox::backdrop { background: rgba(20, 28, 18, .86); }
-dialog.lightbox img { max-height: 84vh; width: auto; margin: 0 auto; border-radius: 6px; }
-dialog.lightbox p { color: #F2EFE3; text-align: center; margin-top: 10px; font-size: .95rem; }
-.lb-close { position: fixed; top: calc(14px + env(safe-area-inset-top, 0px)); right: calc(14px + env(safe-area-inset-right, 0px)); width: 44px; height: 44px; border-radius: 50%; border: 0; background: #F2EFE3; color: #26331F; font-size: 1.5rem; cursor: pointer; }
+dialog.lightbox { border: 0; padding: 0; background: transparent; max-width: min(92vw, 900px); max-height: 92vh; overflow: visible; touch-action: pan-y; }
+dialog.lightbox::backdrop { background: rgba(14, 20, 12, .9); }
+dialog.lightbox img { max-height: 80vh; width: auto; margin: 0 auto; border-radius: 6px; user-select: none; -webkit-user-drag: none; }
+.lb-cap { color: #F2EFE3; text-align: center; margin-top: 12px; font-size: .95rem; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.lb-count { color: #B5BBA8; font-variant-numeric: tabular-nums; letter-spacing: .04em; }
+.lb-btn { position: fixed; z-index: 2; width: 48px; height: 48px; border-radius: 50%; border: 0; background: rgba(242, 239, 227, .92); color: #26331F; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+.lb-btn:hover { background: #FFFFFF; }
+.lb-btn svg { width: 22px; height: 22px; }
+.lb-close { top: calc(14px + env(safe-area-inset-top, 0px)); right: calc(14px + env(safe-area-inset-right, 0px)); }
+.lb-prev, .lb-next { top: 50%; transform: translateY(-50%); }
+.lb-prev { left: calc(12px + env(safe-area-inset-left, 0px)); }
+.lb-next { right: calc(12px + env(safe-area-inset-right, 0px)); }
+@media (max-width: 599px) { .lb-prev, .lb-next { top: auto; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: none; } }
 
 /* ---------- About ---------- */
 .about .wrap { display: grid; gap: 44px; align-items: center; }
@@ -162,20 +242,62 @@ dialog.lightbox p { color: #F2EFE3; text-align: center; margin-top: 10px; font-s
 
 /* ---------- Contact ---------- */
 .contact { background: var(--sage-deep); color: var(--on-sage); }
-.contact .wrap { display: grid; gap: 28px; justify-items: center; text-align: center; }
+.contact .wrap { display: grid; gap: 44px; align-items: start; }
+@media (min-width: 960px) { .contact .wrap { grid-template-columns: 1fr 1.15fr; gap: 64px; } }
+.contact-intro { display: grid; gap: 22px; justify-items: start; min-width: 0; }
 .contact h2 { color: var(--on-sage); }
 .contact .lede { color: var(--on-sage); opacity: .85; }
+.contact .prefer { font-size: .78rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; opacity: .75; margin-top: 8px; }
 .email {
-  font-family: var(--font-display); font-size: clamp(1.3rem, 4.6vw, 2.2rem);
-  user-select: all; overflow-wrap: anywhere; padding: 10px 0; border-bottom: 1.5px solid var(--rose);
+  font-family: var(--font-display); font-size: clamp(1.25rem, 4vw, 1.8rem);
+  user-select: all; overflow-wrap: anywhere; padding: 6px 0; border-bottom: 1.5px solid var(--rose);
 }
+
+.contact-form {
+  display: grid; gap: 18px; min-width: 0;
+  background: color-mix(in srgb, var(--bg) 55%, transparent);
+  border: 1px solid rgba(242, 239, 227, .14); border-radius: 14px;
+  padding: clamp(20px, 4vw, 34px);
+}
+.form-row { display: grid; gap: 18px; }
+@media (min-width: 560px) { .form-row { grid-template-columns: 1fr 1fr; } }
+.field { display: grid; gap: 6px; min-width: 0; }
+.field label, .contact-form legend { font-size: .92rem; font-weight: 500; }
+.field .opt { font-weight: 400; opacity: .65; }
+.contact-form input[type="text"], .contact-form input[type="email"], .contact-form input[type="tel"],
+.contact-form select, .contact-form textarea {
+  width: 100%; font: 400 1rem var(--font-body); color: var(--ink);
+  background: var(--bg); border: 1.5px solid rgba(242, 239, 227, .2); border-radius: 8px;
+  padding: 12px 14px; transition: border-color .2s;
+}
+.contact-form textarea { min-height: 130px; resize: vertical; }
+.contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { outline: none; border-color: var(--sage); }
+.contact-form input:focus-visible, .contact-form select:focus-visible, .contact-form textarea:focus-visible { outline: 3px solid var(--marigold); outline-offset: 1px; }
+.contact-form fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.contact-form legend { padding: 0; margin-bottom: 10px; }
+.checks { display: flex; flex-wrap: wrap; gap: 8px; }
+.check { position: relative; }
+.check input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.check span {
+  display: inline-block; padding: 8px 14px; border-radius: 999px; font-size: .9rem; cursor: pointer;
+  border: 1.5px solid rgba(242, 239, 227, .25); color: var(--on-sage); transition: background .2s, border-color .2s;
+}
+.check span:hover { border-color: var(--on-sage); }
+.check input:checked + span { background: var(--on-sage); border-color: var(--on-sage); color: var(--sage-deep); }
+.check input:focus-visible + span { outline: 3px solid var(--marigold); outline-offset: 2px; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; }
+.form-status { font-size: .95rem; min-height: 1.5em; }
+.form-status.error { color: #F3C3B4; }
+.form-done { display: grid; gap: 12px; text-align: left; }
+.form-done h3 { color: var(--on-sage); font-size: 1.6rem; }
 .contact .btn-primary { background: var(--on-sage); color: var(--sage-deep); border-color: var(--on-sage); }
 .contact .btn-primary:hover { background: transparent; color: var(--on-sage); }
 .contact .btn-ghost { color: var(--on-sage); border-color: rgba(247,244,234,.35); }
 .contact .btn-ghost:hover { border-color: var(--on-sage); color: var(--on-sage); }
-.contact-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.contact-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .copy-status { min-height: 1.5em; font-size: .92rem; opacity: .85; }
-.social { display: flex; gap: 22px; flex-wrap: wrap; justify-content: center; font-size: .95rem; }
+.social { display: flex; gap: 22px; flex-wrap: wrap; font-size: .95rem; }
 .social a { text-decoration: none; border-bottom: 1px solid rgba(247,244,234,.4); }
 .social a:hover { border-color: var(--on-sage); }
 
@@ -217,16 +339,30 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 18px 32px; align-items: cent
       <svg viewBox="0 0 120 112" aria-hidden="true"><use href="#mark"/></svg>
       <span class="word"><span class="script">porchscapes</span><span class="by">by carol &amp; susan</span></span>
     </a>
-    <nav class="site-nav" aria-label="Main">
-      <a href="#services">Services</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class="header-right">
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn btn-primary btn-sm" href="#contact">Book a visit</a>
+      <button class="menu-toggle" type="button" id="menu-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <svg class="bars" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <svg class="x" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </div>
   </div>
 </header>
 
 <main id="top">
+  <div class="season-banner" id="season-banner">
+    <div class="wrap">
+      <p id="season-text">Now booking holiday wreaths and winter porches.</p>
+      <a href="#contact">Book a visit →</a>
+    </div>
+  </div>
+
   <section class="hero">
     <div class="wrap">
       <div class="hero-copy">
@@ -239,11 +375,41 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 18px 32px; align-items: cent
         </div>
       </div>
       <div class="hero-art">
-        <img class="main gable" src="images/fall-window-box.jpg" alt="Overflowing fall window box with dwarf cypress, mums, pansies, coleus and small pumpkins" width="880" height="1100">
-        <img class="inset" src="images/winter-cabbage-bowl.jpg" alt="Ornamental cabbage, pansies and silver foliage in a white bowl on brick steps" width="400" height="400">
+        <img class="main gable" id="hero-main" src="images/wreath-holly-sash.jpg" alt="Frosted holly wreath with a white monogrammed sash on a wooden front door" width="880" height="1100">
+        <img class="inset" id="hero-inset" src="images/winter-cabbage-bowl.jpg" alt="Ornamental cabbage, pansies and silver foliage in a white bowl on brick steps" width="400" height="400">
       </div>
     </div>
   </section>
+  <script>
+  /* Seasonal banner + hero photos. The page picks the entry whose months include today.
+     To change wording or photos, edit the lines below (months are 1 = January ... 12 = December). */
+  const SEASONS = [
+    { months: [1, 2], banner: "Now booking winter porches and early spring planters.",
+      hero: ["winter-cypress-pansies", "Dwarf cypress with purple pansies beside an iron railing"],
+      inset: ["winter-cabbage-bowl", "Ornamental cabbage, pansies and silver foliage in a white bowl on brick steps"] },
+    { months: [3, 4, 5], banner: "Now booking spring container gardens and porch refreshes.",
+      hero: ["summer-pink-hibiscus", "Pink hibiscus with coleus and purple heliotrope in a porch planter"],
+      inset: ["summer-petunias", "Red petunias and yellow calibrachoa"] },
+    { months: [6, 7, 8], banner: "Now booking summer refreshes for porches, patios and beds.",
+      hero: ["summer-red-hibiscus", "Large urn with red hibiscus, vinca and trailing variegated vines"],
+      inset: ["beds-impatiens", "A full bed of pink impatiens"] },
+    { months: [9, 10], banner: "Now booking fall porches with mums, pansies and pumpkins.",
+      hero: ["fall-window-box", "Overflowing fall window box with dwarf cypress, mums, pansies, coleus and small pumpkins"],
+      inset: ["winter-cabbage-bowl", "Ornamental cabbage, pansies and silver foliage in a white bowl on brick steps"] },
+    { months: [11, 12], banner: "Now booking holiday wreaths and winter porches.",
+      hero: ["wreath-holly-sash", "Frosted holly wreath with a white monogrammed sash on a wooden front door"],
+      inset: ["winter-cabbage-bowl", "Ornamental cabbage, pansies and silver foliage in a white bowl on brick steps"] },
+  ];
+  (function () {
+    const month = new Date().getMonth() + 1;
+    const season = SEASONS.find(s => s.months.includes(month));
+    if (!season) return;
+    document.getElementById("season-text").textContent = season.banner;
+    const set = (id, [file, alt]) => { const img = document.getElementById(id); img.src = "images/" + file + ".jpg"; img.alt = alt; };
+    set("hero-main", season.hero);
+    set("hero-inset", season.inset);
+  })();
+  </script>
 
   <div class="area">
     <div class="wrap">
@@ -264,28 +430,38 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 18px 32px; align-items: cent
       <div class="services-grid">
         <article class="service">
           <img src="images/summer-red-hibiscus.jpg" alt="Large urn with red hibiscus, vinca and trailing variegated vines beside an American flag" loading="lazy">
-          <h3>Custom container gardens</h3>
-          <p>Every planter is designed around your space, your light and your style, then planted and set in place on your porch or patio.</p>
+          <div class="service-text">
+            <h3>Custom container gardens</h3>
+            <p>Every planter is designed around your space, your light and your style, then planted and set in place on your porch or patio.</p>
+          </div>
         </article>
         <article class="service">
           <img src="images/fall-woven-pumpkins.jpg" alt="Woven planter with white and orange pumpkins, evergreens and trailing ivy at a front door" loading="lazy">
-          <h3>Seasonal porch refreshes</h3>
-          <p>We change your planters with the seasons, from summer annuals to fall mums, pansies and pumpkins, then evergreens and berries for winter.</p>
+          <div class="service-text">
+            <h3>Seasonal porch refreshes</h3>
+            <p>We change your planters with the seasons, from summer annuals to fall mums, pansies and pumpkins, then evergreens and berries for winter.</p>
+          </div>
         </article>
         <article class="service">
           <img src="images/wreath-holly-sash.jpg" alt="Frosted holly wreath with a white monogrammed sash on a wooden front door" loading="lazy">
-          <h3>Wreaths, sashes &amp; bows</h3>
-          <p>Wreaths made for your door and the season, finished with a hand-tied bow.</p>
+          <div class="service-text">
+            <h3>Wreaths, sashes &amp; bows</h3>
+            <p>Wreaths made for your door and the season, finished with a hand-tied bow.</p>
+          </div>
         </article>
         <article class="service">
           <img src="images/indoor-orchid.jpg" alt="Pink orchid and golden pothos in a cobalt blue pot indoors" loading="lazy">
-          <h3>Interior plantscapes</h3>
-          <p>Orchids, snake plants and other easy-care greenery that bring a little of the garden inside.</p>
+          <div class="service-text">
+            <h3>Interior plantscapes</h3>
+            <p>Orchids, snake plants and other easy-care greenery that bring a little of the garden inside.</p>
+          </div>
         </article>
         <article class="service">
           <img src="images/beds-walkway.jpg" alt="Walkway border planted with angelonia, coleus, impatiens and yellow lantana" loading="lazy">
-          <h3>Beds &amp; borders</h3>
-          <p>Seasonal color for walkways, flower beds and borders all around your home.</p>
+          <div class="service-text">
+            <h3>Beds &amp; borders</h3>
+            <p>Seasonal color for walkways, flower beds and borders all around your home.</p>
+          </div>
         </article>
       </div>
     </div>
@@ -318,7 +494,7 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 18px 32px; align-items: cent
         <h2 id="how-title">Simple from start to finish</h2>
       </div>
       <ol class="steps">
-        <li><h3>Reach out by email</h3><p>Send us a note about what you have in mind. We'll get back to you and work out the details together.</p></li>
+        <li><h3>Get in touch</h3><p>Send us a message or an email about what you have in mind. We'll get back to you and work out the details together.</p></li>
         <li><h3>We design it</h3><p>We choose plants, colors and containers that suit your space and your home.</p></li>
         <li><h3>We plant &amp; install</h3><p>We gather everything, plant it and set it up for you.</p></li>
         <li><h3>Refresh each season</h3><p>When the season changes, we'll swap in fresh plants so your porch always looks its best.</p></li>
@@ -359,19 +535,75 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 18px 32px; align-items: cent
 
   <section id="contact" class="contact">
     <div class="wrap">
-      <p class="eyebrow" style="color:var(--on-sage);opacity:.8">Get in touch</p>
-      <h2>Let's plan your porch</h2>
-      <p class="lede">Contact us by email to set up an appointment. We'll get back to you to talk through your ideas and plan the details.</p>
-      <p class="email" id="email">info.porchscapes@gmail.com</p>
-      <div class="contact-actions">
-        <button class="btn btn-primary" type="button" id="copy-email">Copy email address</button>
-        <a class="btn btn-ghost" href="mailto:info.porchscapes@gmail.com?subject=Porch%20design%20request">Open in my email app</a>
+      <div class="contact-intro">
+        <p class="eyebrow" style="color:var(--on-sage);opacity:.8">Get in touch</p>
+        <h2>Let's plan your porch</h2>
+        <p class="lede">Send us a message to set up an appointment. We'll get back to you to talk through your ideas and plan the details.</p>
+        <p class="prefer">Prefer email?</p>
+        <p class="email" id="email">info.porchscapes@gmail.com</p>
+        <div class="contact-actions">
+          <button class="btn btn-primary btn-sm" type="button" id="copy-email">Copy email address</button>
+          <a class="btn btn-ghost btn-sm" href="mailto:info.porchscapes@gmail.com?subject=Porch%20design%20request">Open in my email app</a>
+        </div>
+        <p class="copy-status" id="copy-status" aria-live="polite"></p>
+        <div class="social">
+          <a href="https://www.facebook.com/porchscapesbycarolandsusan/" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.instagram.com/porchscapesbycarolandsusan/" target="_blank" rel="noopener">Instagram</a>
+        </div>
       </div>
-      <p class="copy-status" id="copy-status" aria-live="polite"></p>
-      <div class="social">
-        <a href="https://www.facebook.com/porchscapesbycarolandsusan/" target="_blank" rel="noopener">Facebook</a>
-        <a href="https://www.instagram.com/porchscapesbycarolandsusan/" target="_blank" rel="noopener">Instagram</a>
-      </div>
+
+      <form class="contact-form" id="contact-form" aria-label="Request an appointment">
+        <div class="form-row">
+          <div class="field">
+            <label for="cf-name">Your name</label>
+            <input type="text" id="cf-name" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="cf-email">Email</label>
+            <input type="email" id="cf-email" name="email" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="cf-phone">Phone <span class="opt">(optional)</span></label>
+            <input type="tel" id="cf-phone" name="phone" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="cf-town">Town</label>
+            <select id="cf-town" name="town" required>
+              <option value="">Choose your town</option>
+              <option>Fuquay-Varina</option>
+              <option>Garner</option>
+              <option>Raleigh</option>
+              <option>Cary</option>
+              <option>Apex</option>
+              <option>Somewhere nearby</option>
+            </select>
+          </div>
+        </div>
+        <fieldset>
+          <legend>What are you interested in? <span class="opt">(pick any)</span></legend>
+          <div class="checks">
+            <label class="check"><input type="checkbox" id="cf-i1" name="interest" value="Container gardens"><span>Container gardens</span></label>
+            <label class="check"><input type="checkbox" id="cf-i2" name="interest" value="Seasonal porch refresh"><span>Seasonal porch refresh</span></label>
+            <label class="check"><input type="checkbox" id="cf-i3" name="interest" value="Wreaths &amp; bows"><span>Wreaths &amp; bows</span></label>
+            <label class="check"><input type="checkbox" id="cf-i4" name="interest" value="Interior plants"><span>Interior plants</span></label>
+            <label class="check"><input type="checkbox" id="cf-i5" name="interest" value="Beds &amp; borders"><span>Beds &amp; borders</span></label>
+          </div>
+        </fieldset>
+        <div class="field">
+          <label for="cf-message">Tell us about your space</label>
+          <textarea id="cf-message" name="message" placeholder="Front porch, back patio, a pair of urns by the door… anything that helps us picture it." required></textarea>
+        </div>
+        <div class="hp" aria-hidden="true">
+          <label for="cf-honey">Leave this empty</label>
+          <input type="text" id="cf-honey" name="_honey" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="form-foot">
+          <button class="btn btn-primary" type="submit" id="cf-submit">Send message</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
     </div>
   </section>
 </main>
@@ -388,9 +620,17 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 18px 32px; align-items: cent
 </footer>
 
 <dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
-  <button class="lb-close" type="button" id="lb-close" aria-label="Close photo">×</button>
+  <button class="lb-btn lb-close" type="button" id="lb-close" aria-label="Close photo">
+    <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+  </button>
+  <button class="lb-btn lb-prev" type="button" id="lb-prev" aria-label="Previous photo">
+    <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <button class="lb-btn lb-next" type="button" id="lb-next" aria-label="Next photo">
+    <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
   <img id="lb-img" src="" alt="">
-  <p id="lb-cap"></p>
+  <p class="lb-cap"><span class="lb-count" id="lb-count"></span><span id="lb-cap"></span></p>
 </dialog>
 
 <script>
@@ -446,18 +686,20 @@ const grid = document.getElementById("gallery-grid");
 const moreBtn = document.getElementById("show-more");
 let filter = "all", expanded = false;
 
+let current = [];   // photos in the selected filter (the viewer flips through these)
 function render() {
   const list = PHOTOS.filter(p => filter === "all" || p[1] === filter);
+  current = list;
   const shown = expanded ? list : list.slice(0, START);
   grid.innerHTML = "";
-  shown.forEach(([file, , alt]) => {
+  shown.forEach(([file, , alt], i) => {
     const b = document.createElement("button");
     b.type = "button";
     b.setAttribute("aria-label", "View larger: " + alt);
     const img = document.createElement("img");
     img.src = "images/" + file + ".jpg"; img.alt = alt; img.loading = "lazy";
     b.appendChild(img);
-    b.addEventListener("click", () => openBox(file, alt));
+    b.addEventListener("click", () => openBox(i));
     grid.appendChild(b);
   });
   moreBtn.hidden = expanded || list.length <= START;
@@ -473,15 +715,96 @@ document.querySelectorAll(".chip").forEach(chip => {
 moreBtn.addEventListener("click", () => { expanded = true; render(); });
 render();
 
+/* ---- Photo viewer: arrows, keyboard and swipe ---- */
 const box = document.getElementById("lightbox");
-function openBox(file, alt) {
-  document.getElementById("lb-img").src = "images/" + file + ".jpg";
-  document.getElementById("lb-img").alt = alt;
+const lbImg = document.getElementById("lb-img");
+let at = 0;
+function show(i) {
+  at = (i + current.length) % current.length;
+  const [file, , alt] = current[at];
+  lbImg.src = "images/" + file + ".jpg";
+  lbImg.alt = alt;
   document.getElementById("lb-cap").textContent = alt;
-  if (box.showModal) box.showModal();
+  document.getElementById("lb-count").textContent = (at + 1) + " / " + current.length;
+  // load the neighbours early so flipping feels instant
+  [at + 1, at - 1].forEach(n => { const p = current[(n + current.length) % current.length]; new Image().src = "images/" + p[0] + ".jpg"; });
 }
+function openBox(i) { show(i); if (box.showModal && !box.open) box.showModal(); }
 document.getElementById("lb-close").addEventListener("click", () => box.close());
+document.getElementById("lb-prev").addEventListener("click", () => show(at - 1));
+document.getElementById("lb-next").addEventListener("click", () => show(at + 1));
 box.addEventListener("click", e => { if (e.target === box) box.close(); });
+box.addEventListener("keydown", e => {
+  if (e.key === "ArrowRight") { e.preventDefault(); show(at + 1); }
+  if (e.key === "ArrowLeft") { e.preventDefault(); show(at - 1); }
+});
+let touchX = null;
+box.addEventListener("touchstart", e => { touchX = e.touches[0].clientX; }, { passive: true });
+box.addEventListener("touchend", e => {
+  if (touchX === null) return;
+  const dx = e.changedTouches[0].clientX - touchX; touchX = null;
+  if (Math.abs(dx) > 45) show(at + (dx < 0 ? 1 : -1));
+});
+
+/* ---- Sticky header: border on scroll + phone menu ---- */
+const header = document.querySelector(".site-header");
+const menuBtn = document.getElementById("menu-toggle");
+const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 8);
+window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+function setMenu(open) {
+  header.classList.toggle("open", open);
+  menuBtn.setAttribute("aria-expanded", open);
+  menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+}
+menuBtn.addEventListener("click", () => setMenu(!header.classList.contains("open")));
+document.querySelectorAll("#site-nav a").forEach(a => a.addEventListener("click", () => setMenu(false)));
+document.addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
+document.addEventListener("click", e => { if (!header.contains(e.target)) setMenu(false); });
+
+/* ---- Contact form ----
+   Messages are sent through FormSubmit (formsubmit.co) to the address below.
+   The very first message triggers a one-time "activate this form" email to that inbox. */
+// TESTING: messages go to Aaron for now. Before launch, change this back to:
+// const FORM_ENDPOINT = "https://formsubmit.co/ajax/info.porchscapes@gmail.com";
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/hunter.aaron@pm.me";
+const form = document.getElementById("contact-form");
+const formStatus = document.getElementById("form-status");
+const submitBtn = document.getElementById("cf-submit");
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  if (!form.reportValidity()) return;
+  const fd = new FormData(form);
+  if (fd.get("_honey")) return;               // a bot filled the hidden field
+  const name = fd.get("name").trim();
+  const payload = {
+    name,
+    email: fd.get("email").trim(),
+    phone: fd.get("phone").trim() || "Not given",
+    town: fd.get("town"),
+    interests: fd.getAll("interest").join(", ") || "Not specified",
+    message: fd.get("message").trim(),
+    _subject: "New appointment request from " + name,
+    _template: "table",
+    _captcha: "false",
+  };
+  submitBtn.disabled = true; submitBtn.textContent = "Sending…";
+  formStatus.className = "form-status"; formStatus.textContent = "";
+  try {
+    const res = await fetch(FORM_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || String(data.success) !== "true") throw new Error(data.message || "Send failed");
+    form.innerHTML = '<div class="form-done"><h3>Thank you, ' + name.replace(/[<>&"]/g, "") +
+      '!</h3><p>Your message is on its way. We\'ll get back to you soon to set up a time.</p></div>';
+  } catch (err) {
+    submitBtn.disabled = false; submitBtn.textContent = "Send message";
+    formStatus.className = "form-status error";
+    formStatus.textContent = "Sorry, your message didn't go through. Please email us at info.porchscapes@gmail.com.";
+  }
+});
 
 document.getElementById("copy-email").addEventListener("click", () => {
   const status = document.getElementById("copy-status");
